@@ -1,0 +1,22 @@
+{
+  "name": "ticktick-api",
+  "version": "1.0.0",
+  "description": "wrapper for ticktick api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RayBB/node-ticktick-api.git"
+  },
+  "author": "RayBB",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RayBB/node-ticktick-api/issues"
+  },
+  "homepage": "https://github.com/RayBB/node-ticktick-api#readme",
+  "dependencies": {
+    "request": "^2.81.0"
+  }
+}
