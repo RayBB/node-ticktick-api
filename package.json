@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/RayBB/node-ticktick-api#readme",
   "dependencies": {
+    "bson-objectid": "^1.1.5",
     "request": "^2.81.0"
+  },
+  "engines": {
+    "node": ">=7.6"
   }
 }
