@@ -4,7 +4,7 @@ This file is just an example of how this library could be used
 
 */
 
-let tick = require('./tick.js')
+let tick = require('./src/tick.js')
 
 async function main() {
     try {
