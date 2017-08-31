@@ -27,7 +27,7 @@ If an error occurs at any part of the request a request will be thrown.
 
 ## API
 
-### tick.addTask("Update readme");
+### tick.addTask(taskTitle);
 
 Adds a task to the inbox of the logged in user.
 
