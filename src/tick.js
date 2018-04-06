@@ -67,9 +67,28 @@ module.exports = class tick {
             });
         });
     }
+    getAllUncompletedTasks() {
+        console.log("Get all Uncompleted tasks started")
+        const url = "https://ticktick.com/api/v2/batch/check/1";
+        const options = {
+            method: "GET",
+            url: url,
+            headers: {
+                Origin: "https://ticktick.com"
+            },
+        };
 
+        return new Promise((resolve, reject) => {
+            this.request(options, function (error, response, body) {
+                body = JSON.parse(body);
+                var tasks = body["syncTaskBean"]["update"];
+                console.log("Retrevied all uncompleted tasks");
+                resolve(tasks);
+            });
+        });
+    }
     //the default list will be inbox
-    addTask(title, projectId = this.inboxId) {
+    addTask(jsonOptions) {
         const url = "https://ticktick.com/api/v2/task";
         console.log("Add task started");
         const options = {
@@ -80,33 +99,34 @@ module.exports = class tick {
                 Origin: "https://ticktick.com"
             },
             json: {
-                modifiedTime: new Date().toISOString().replace("Z", "+0000"), //"2017-08-12T17:04:51.982+0000",
-                id: ObjectID(),
-                title: title,
-                priority: 0,
-                status: 0,
-                deleted: 0,
-                timeZone: "America/New_York", // This needs to be updated to grab dynamically
-                content: "",
-                sortOrder: this.sortOrder,
-                projectId: projectId,
-                startDate: null,
-                dueDate: null,
-                items: [],
-                assignee: null,
-                progress: 0,
-                tags: [],
-                isAllDay: null,
-                reminder: null,
-                reminders: null,
-                remindTime: null,
-                local: true
+                modifiedTime: (jsonOptions.modifiedTime) ? jsonOptions.modifiedTime : new Date().toISOString().replace("Z", "+0000"), //"2017-08-12T17:04:51.982+0000",
+                id: (jsonOptions.id) ? jsonOptions.id : ObjectID(),
+                title: jsonOptions.title,
+                priority: (jsonOptions.priority) ? jsonOptions.priority :0,
+                status: (jsonOptions.status) ? jsonOptions.status : 0,
+                deleted: (jsonOptions.deleted) ? jsonOptions.deleted : 0,
+                timeZone: (jsonOptions.timeZone) ? jsonOptions.timeZone : "America/New_York", // This needs to be updated to grab dynamically
+                content: (jsonOptions.content) ? jsonOptions.content : "",
+                sortOrder: (jsonOptions.sortOrder) ? jsonOptions.sortOrder : this.sortOrder,
+                projectId: (jsonOptions.projectId) ? jsonOptions.projectId : this.inboxId,
+                startDate: (jsonOptions.startDate) ? jsonOptions.startDate : null,
+                dueDate: (jsonOptions.dueDate) ? jsonOptions.dueDate : null,
+                items: (jsonOptions.items) ? jsonOptions.items : [],
+                assignee: (jsonOptions.assignee) ? jsonOptions.assignee : null,
+                progress: (jsonOptions.progress) ? jsonOptions.progress : 0,
+                tags: (jsonOptions.tags) ? jsonOptions.tags : [],
+                isAllDay: (jsonOptions.isAllDay) ? jsonOptions.isAllDay : null,
+                reminder: (jsonOptions.reminder) ? jsonOptions.reminder : null,
+                reminders: (jsonOptions.reminders) ? jsonOptions.reminders : null,
+                remindTime: (jsonOptions.remindTime) ? jsonOptions.remindTime : null,
+                local: (jsonOptions.local) ? jsonOptions.local : true,
+                desc: (jsonOptions.desc) ? jsonOptions.desc : "" // this is a hidden text field not desplayed to the user
             }
         };
 
         return new Promise((resolve, reject) => {
             this.request(options, function (error, response, body) {
-                console.log("Added: " + title);
+                console.log("Added: " + jsonOptions.title);
                 this.sortOrder = body.sortOrder - 1;
                 resolve(body);
             });
