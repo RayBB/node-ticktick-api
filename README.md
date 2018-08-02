@@ -1,8 +1,8 @@
 # TickTick API
 
-A Node.js module for using the UNOFFICIAL api for TickTick.com
+A Node.js module for using the UNOFFICIAL API for TickTick.com
 
-There is no official API available so this uses the api based on the website. Since it's undocumented it may change at any time and this module may stop working.
+There is no official API available so this uses the API based on calls their site makes. Since it's undocumented it may change at any time and this module may stop working.
 
 ## Usage
 
@@ -13,7 +13,10 @@ let tick = require('./tick.js')
 
 async function main() {
     let t = await new tick({ username: "email@email.com", password: "supersecurestuff" });
-    await t.addTask("Put on heroku");
+    let due = new Date("04 August 2018 14:48");
+    due = due.toISOString().replace("Z", "+0000");  // The api only accepts dates in this format
+    options = {title: "Update the API wrapper", dueDate: due}
+    await t.addTask(options);
 }
 
 main();
@@ -27,12 +30,12 @@ If an error occurs at any part of the request a request will be thrown.
 
 ## API
 
-### tick.addTask(taskTitle);
+### tick.addTask(options);
 
 Adds a task to the inbox of the logged in user.
 
 ```javascript
-tick.addTask("Update readme");
+tick.addTask({title: "my great task"});
 ```
 ## Contributing
 As you can see, this repo is still in it's infancy. If you're like to contribute feel free to open an issue or make a pull request.
