@@ -99,28 +99,29 @@ module.exports = class tick {
                 Origin: "https://ticktick.com"
             },
             json: {
-                modifiedTime: (jsonOptions.modifiedTime) ? jsonOptions.modifiedTime : new Date().toISOString().replace("Z", "+0000"), //"2017-08-12T17:04:51.982+0000",
-                id: (jsonOptions.id) ? jsonOptions.id : ObjectID(),
-                title: jsonOptions.title,
-                priority: (jsonOptions.priority) ? jsonOptions.priority :0,
-                status: (jsonOptions.status) ? jsonOptions.status : 0,
-                deleted: (jsonOptions.deleted) ? jsonOptions.deleted : 0,
-                timeZone: (jsonOptions.timeZone) ? jsonOptions.timeZone : "America/New_York", // This needs to be updated to grab dynamically
-                content: (jsonOptions.content) ? jsonOptions.content : "",
-                sortOrder: (jsonOptions.sortOrder) ? jsonOptions.sortOrder : this.sortOrder,
-                projectId: (jsonOptions.projectId) ? jsonOptions.projectId : this.inboxId,
-                startDate: (jsonOptions.startDate) ? jsonOptions.startDate : null,
-                dueDate: (jsonOptions.dueDate) ? jsonOptions.dueDate : null,
-                items: (jsonOptions.items) ? jsonOptions.items : [],
                 assignee: (jsonOptions.assignee) ? jsonOptions.assignee : null,
-                progress: (jsonOptions.progress) ? jsonOptions.progress : 0,
-                tags: (jsonOptions.tags) ? jsonOptions.tags : [],
+                content: (jsonOptions.content) ? jsonOptions.content : "",
+                deleted: (jsonOptions.deleted) ? jsonOptions.deleted : 0,
+                dueDate: (jsonOptions.dueDate) ? jsonOptions.dueDate : null,
+                id: (jsonOptions.id) ? jsonOptions.id : ObjectID(),
                 isAllDay: (jsonOptions.isAllDay) ? jsonOptions.isAllDay : null,
-                reminder: (jsonOptions.reminder) ? jsonOptions.reminder : null,
-                reminders: (jsonOptions.reminders) ? jsonOptions.reminders : null,
-                remindTime: (jsonOptions.remindTime) ? jsonOptions.remindTime : null,
+                isDirty: (jsonOptions.isDirty) ? jsonOptions.isDirty : true,
+                items: (jsonOptions.items) ? jsonOptions.items : [],
                 local: (jsonOptions.local) ? jsonOptions.local : true,
-                desc: (jsonOptions.desc) ? jsonOptions.desc : "" // this is a hidden text field not desplayed to the user
+                modifiedTime: (jsonOptions.modifiedTime) ? jsonOptions.modifiedTime : new Date().toISOString().replace("Z", "+0000"), //"2017-08-12T17:04:51.982+0000",
+                priority: (jsonOptions.priority) ? jsonOptions.priority :0,
+                progress: (jsonOptions.progress) ? jsonOptions.progress : 0,
+                projectId: (jsonOptions.projectId) ? jsonOptions.projectId : this.inboxId,
+                reminder: (jsonOptions.reminder) ? jsonOptions.reminder : null,
+                reminders: (jsonOptions.reminders) ? jsonOptions.reminders : [{id:ObjectID(),trigger:"TRIGGER:PT0S"}],
+                remindTime: (jsonOptions.remindTime) ? jsonOptions.remindTime : null,
+                repeatFlag: (jsonOptions.repeatFlag) ? jsonOptions.repeatFlag : null,
+                sortOrder: (jsonOptions.sortOrder) ? jsonOptions.sortOrder : this.sortOrder,
+                startDate: (jsonOptions.startDate) ? jsonOptions.startDate : null,
+                status: (jsonOptions.status) ? jsonOptions.status : 0,
+                tags: (jsonOptions.tags) ? jsonOptions.tags : [],
+                timeZone: (jsonOptions.timeZone) ? jsonOptions.timeZone : "America/New_York", // This needs to be updated to grab dynamically
+                title: jsonOptions.title,
             }
         };
 
